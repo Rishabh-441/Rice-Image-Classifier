@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rice Identification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="static\css\styles.css">
+    
+    
+</head>
+<body>
+    <h1>Rice Image Classifier</h1>
+    <div class="container">
+        <h2>Upload Image</h2>
+        <form method="post" action="/" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="imageInput">Choose an image file:</label>
+                <input type="file" class="form-control-file" id="imageInput" name="imageFile" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Predict Image</button>
+        </form>
+        {% if image_path %}
+    <img id="inputImage" src={{ image_path }} alt="Uploaded Image" width="224" height="224">
+    {% endif %}
+        
+        {% if prediction %}
+            <p class="text-center">
+                This is {{prediction}} rice <br> Accuracy : {{probability}}%
+            </p>
+        {% endif %}
+    </div>
+
+    
+    <div id="info">
+        <section class="model-info">
+        <h1>Model Information</h1>
+        <hr>
+        <p>Model Used: VGG16</p>
+        <hr>
+        <p>Number of Classes: 5 
+            <br>Karacadag
+            <br>Basmati
+            <br>Jasmine
+            <br>Arborio
+            <br>Ipsala
+        </p>
+        
+        <hr>
+        <p>Training dataset: 40,000+ images</p>
+        <hr>
+        <p>Validation Accuracy: 99.57%</p>
+        <hr>
+
+        
+        <!-- Display images of accuracy curve, ROC curve, and confusion matrix -->
+        <div class="model-images">
+            <img src="/static/graphImages/accuracy.png" alt="Accuracy Curve" width="300">
+            <img src="/static/graphImages/roc.png" alt="ROC Curve" width="300">
+            <img src="/static/graphImages/confusionMatrix.png" alt="Confusion Matrix" width="300">
+        </div>
+    </section>
+    </div>
+    <hr>
+
+    <footer>
+        Made by KellySa🎃©
+    </footer>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
